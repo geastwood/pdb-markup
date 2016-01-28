@@ -2,9 +2,7 @@ PdbConnect = (() => {
   return {
     init() {
       console.log('connector initialized');
-      $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-      });
+      $('[data-toggle="tooltip"]').tooltip();
     }
   };
 })();

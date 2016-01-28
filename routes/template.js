@@ -1,18 +1,30 @@
 var express = require('express');
 var router = express.Router();
 var swig = require('swig');
-var tpl = swig.compile(`
-<h1>title for {{keyword}}</h1>
-<ul>
-<li data-tooltip="first tooltip">first</li>
-<li class="second" data-tooltip="second tooltip">second</li>
-<li data-toggle="tooltip" data-placement="bottom" title="i'm a tooltip for {{keyword}}">{{keyword}}</li>
-</ul>
-`);
+var fs = require('fs');
+var path = require('path');
+var testData = require(path.join(__dirname, '/../data/testData.json'));
+
+var keywordListTpl = fs.readFileSync(path.join(__dirname, '/../template/keywordList.html'), 'utf8');
+var tpl = swig.compile(keywordListTpl);
+
+var randomKeywords = (length, data) => {
+  var keys = Object.keys(data),
+    total = keys.length,
+    rst = [], key;
+  do {
+    key = keys[Math.floor(Math.random() * total)];
+    rst.push({
+      name: key, content: data[key]
+    });
+    length--;
+  } while (length > 0);
+  return rst;
+};
 
 router.get('/:keyword', (req, res, next) => {
   res.json({
-    markup: tpl({keyword: req.params.keyword}),
+    markup: tpl({keywords: randomKeywords(30, testData)}),
     action: 'init'
   });
 });

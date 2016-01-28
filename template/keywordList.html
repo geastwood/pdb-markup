@@ -1,0 +1,11 @@
+<ul>
+    {% for keyword in keywords %}
+    <li
+            data-placement="left"
+            data-toggle="tooltip"
+            title="tooltip is {{keyword.name}} at {{loop.index0 + 1}}"
+    >
+        <a href="/search/{{keyword.name|url_encode}}">{{keyword.name}} -> weight({{keyword.content.weight}})</a>
+    </li>
+    {% endfor %}
+</ul>
