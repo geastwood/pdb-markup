@@ -3,7 +3,7 @@
     <li
             data-placement="left"
             data-toggle="tooltip"
-            title="tooltip is {{keyword.name}} at {{loop.index0 + 1}}"
+            title="{{keyword.name}} at {{loop.index0 + 1}}"
     >
         <a class="pdb-keyword-link" data-keyword-name="{{keyword.name}}" href="/search/{{ keyword.name|url_encode }}">{{keyword.name}} -> weight({{keyword.content.weight}})</a>
     </li>
