@@ -1,11 +1,17 @@
 <ul>
-    {% for keyword in keywords %}
-    <li
-            data-placement="left"
-            data-toggle="tooltip"
-            title="{{keyword.name}} at {{loop.index0 + 1}}"
+  {% for keyword in keywords %}
+  <li
+      data-placement="left"
+      data-toggle="tooltip"
+      title="{{keyword.name}} at {{loop.index0 + 1}}"
+  >
+    <a
+        class="pdb-keyword-link"
+        data-keyword-name="{{keyword.name}}"
+        href="/search/{{ keyword.name|url_encode }}"
     >
-        <a class="pdb-keyword-link" data-keyword-name="{{keyword.name}}" href="/search/{{ keyword.name|url_encode }}">{{keyword.name}} -> weight({{keyword.content.weight}})</a>
-    </li>
-    {% endfor %}
+      {{keyword.name}} -> weight({{keyword.content.weight}})
+    </a>
+  </li>
+  {% endfor %}
 </ul>
