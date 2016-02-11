@@ -23,8 +23,12 @@ var randomKeywords = (length, data) => {
 };
 
 router.get('/:keyword', (req, res, next) => {
+  console.log(req.params.keyword);
   res.json({
-    markup: tpl({keywords: randomKeywords(30, testData)}),
+    markup: tpl({
+      keywords: randomKeywords(30, testData),
+      originalKey: req.params.keyword
+    }),
     action: 'init'
   });
 });
